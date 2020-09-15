@@ -1,0 +1,14 @@
+/* Columns and operators */
+
+@for $size from 1 to 5 {
+    .col-#{$size} {
+        $sz-width: 100%;
+        @if $size % 2 == 0 {
+            $sz-width: $sz-width / $size;
+            width: $sz-width;
+        } @else {
+            $sz-width: $sz-width / $size;
+            width: $sz-width;
+        }
+    } 
+}
