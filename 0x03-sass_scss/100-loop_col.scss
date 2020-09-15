@@ -2,7 +2,7 @@
 
 @for $size from 1 to 5 {
     $sz-width: 100%;
-    @if $size % 2 == 0 {
+    @if ($size % 2) == 0 {
         $sz-width: ($sz-width / $size);
     } @else {
         $sz-width: ($sz-width / $size);
