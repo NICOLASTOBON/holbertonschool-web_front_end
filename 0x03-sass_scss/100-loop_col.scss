@@ -1,7 +1,7 @@
 /* Columns and operators */
 $sz-width: 100%;
 
-@for $size from 1 to 5 {
+@for $size from 1 through 4 {
     .col-#{$size} {
         width: ($sz-width/$size);
     }
