@@ -1,0 +1,16 @@
+/* Assigns margin mixin */
+
+@mixin marginMix ($size: 10px){
+    margin: {
+        left: $size;
+        right: $size;
+    }
+}
+
+body {
+    @include marginMix();
+}
+
+div {
+    @include marginMix(15px);
+}
