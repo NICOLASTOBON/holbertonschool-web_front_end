@@ -3,6 +3,6 @@ $sz-width: 100%;
 
 @for $size from 1 to 5 {
     .col-#{$size} {
-        width: $sz-width / $size;
+        width: ($sz-width/$size);
     }
 }
