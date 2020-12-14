@@ -62,7 +62,7 @@
     --header-logo-link-top: -1rem;
     --header-logo-link-left: 0;
 }
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 html {
