@@ -157,7 +157,7 @@ ul.row {
     color: var(--nav-item-link-hover);
 }
 .nav .nav-link::before {
-    content: empty;
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
