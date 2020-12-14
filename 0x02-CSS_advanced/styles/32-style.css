@@ -71,7 +71,7 @@
     background-color: var(--color-black);
     --button-color: var(--color-white);
 }
-*, *:before, *:after {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 html {
@@ -296,7 +296,7 @@ header {
 .card-work:hover .card-outer {
     transform: scale(0.95);
 }
-.card-work .card-title:hover {
+.card-work:hover .card-title {
     opacity: 1;
 }
 .card-testimonial {
@@ -341,6 +341,6 @@ header {
 .social-link {
     display: block;
 }
-.social-link svg {
-    color: var(--text-color);
+.social-link > svg {
+    fill: var(--text-color);
 }
