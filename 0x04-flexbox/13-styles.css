@@ -91,7 +91,8 @@
     --transition-cubic-bezier: cubic-bezier(0.17, 0.67, 0, 1.01);
 }
   
-/* Base ============================= */
+/* Base
+    ============================= */
   
 *, *:before, *:after {
     box-sizing: border-box;
@@ -149,7 +150,8 @@ a:active {
     transition-property: color, background-color;
 }
   
-/* Helpers ============================= */
+/* Helpers
+    ============================= */
   
   .visually-hidden:not(:focus):not(:active) {
     position: absolute !important;
@@ -162,7 +164,8 @@ a:active {
   
 /*** 2. LAYOUT ***/
   
-/* Layout ============================= */
+/* Layout
+    ============================= */
   
 .container {
     width: 960px;
@@ -170,16 +173,17 @@ a:active {
     margin-right: auto;
 }
   
-/* Grid ============================= */
-  
+/* Grid
+    ============================= */
+
+.row {
+    display: flex;
+}
+    
 ul.row {
     margin: -1rem;
     padding: 0;
     list-style: none;
-}
-  
-.row {
-    display: flex;
 }
 
 [class*='col-'] {
@@ -194,18 +198,15 @@ ul.row {
     width: calc((100% 2) - 2rem);
 }
   
-/* Navbar ============================= */
-  
-.navbar-menu {
-    float: right;
-}
+/* Navbar
+    ============================= */
   
 .nav {
-    display: flex;
     margin: 0;
     padding: 0;
     list-style: none;
     text-align: center;
+    display: flex;
 }
   
 .nav .nav-item {
@@ -246,7 +247,8 @@ nav .nav-item + .nav-item {
     width: 100%;
 }
   
-/* Header ============================= */
+/* Header
+    ============================= */
   
 .header {
     padding: var(--header-padding);
@@ -261,7 +263,8 @@ nav .nav-item + .nav-item {
     align-items: center;
 }
  
-/* Footer ============================= */
+/* Footer
+    ============================= */
   
 .footer {
     --nav-item-font-weight: normal;
@@ -293,7 +296,8 @@ nav .nav-item + .nav-item {
   
 /*** 3. SECTION ***/
   
-/* Section (all styles) ============================= */
+/* Section (all styles)
+    ============================= */
   
 .section {
     padding: var(--section-padding);
@@ -329,7 +333,8 @@ nav .nav-item + .nav-item {
     text-align: var(--section-footer-align);
 }
   
-/* Section theming ============================= */
+/* Section theming
+    ============================= */
   
 [data-section-theme="dark"] {
     --button-color: var(--color-white);
@@ -338,7 +343,8 @@ nav .nav-item + .nav-item {
     background-color: #010101;
 }
   
-/* Section HERO ============================= */
+/* Section HERO
+    ============================= */
   
 .hero-homepage {
     background-position: 75% 0;
@@ -373,13 +379,15 @@ nav .nav-item + .nav-item {
     text-transform: uppercase;
 }
 
-/* Section Latest news ============================= */
+/* Section Latest news
+    ============================= */
 
-.row {
+.section-latest-news .row {
     flex-direction: row-reverse;
 }
 
-/* Section SERVICES ============================= */
+/* Section SERVICES
+    ============================= */
 
 .section-services .row {
     flex-wrap: wrap;
@@ -392,13 +400,15 @@ nav .nav-item + .nav-item {
 }
   /*** 4. CARD ***/
   
-/* Card (all styles) ============================= */
+/* Card (all styles)
+    ============================= */
   
 .card-category {
     color: var(--color-primary);
 }
   
-/* Card WORK ============================= */
+/* Card WORK
+    ============================= */
   
 .card-work .card-outer {
     position: relative;
@@ -462,7 +472,8 @@ nav .nav-item + .nav-item {
     opacity: 1;
 }
   
-/* Card SERVICES ============================= */
+/* Card SERVICES
+    ============================= */
   
 .card-services .card-title {
     margin: 0;
@@ -482,7 +493,8 @@ nav .nav-item + .nav-item {
     transition-property: color, background-color;
 }
   
-/* Card TESTIMONIAL ============================= */
+/* Card TESTIMONIAL
+    ============================= */
   
 .card-testimonial {
     text-align: center;
@@ -515,7 +527,8 @@ nav .nav-item + .nav-item {
 }
 
 /*** ARTICLE PAGE ***/
-/* Section HERO (article)============================= */
+/* Section HERO (article)
+    ============================= */
 
 .hero-article {
     background-size: 150rem 100rem;
@@ -549,7 +562,8 @@ nav .nav-item + .nav-item {
     padding: 5rem 0;
 }
 
-/* Post ============================= */
+/* Post
+    ============================= */
 
 .post {
     display: flex;
@@ -564,7 +578,8 @@ nav .nav-item + .nav-item {
     min-width: 20%;
 }
 
-/* Post Meta ============================= */
+/* Post Meta
+    ============================= */
 
 .post-meta-list {
     flex-direction: column;
@@ -588,7 +603,8 @@ nav .nav-item + .nav-item {
     padding-bottom: 3rem;
 }
 
-/* Tag list ============================= */
+/* Tag list
+    ============================= */
 
 .tag-list {
     padding: 0;
