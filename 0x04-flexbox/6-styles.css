@@ -196,10 +196,6 @@ ul.row {
   
 /* Navbar ============================= */
   
-.navbar-menu {
-    float: right;
-}
-  
 .nav {
     display: flex;
     margin: 0;
