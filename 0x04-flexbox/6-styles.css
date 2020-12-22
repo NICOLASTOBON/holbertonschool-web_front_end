@@ -191,7 +191,7 @@ ul.row {
 }
   
 .col-1-2 {
-    width: calc((100% 2) - 2rem);
+    width: calc((100% / 2) - 2rem);
 }
   
 /* Navbar ============================= */
@@ -252,7 +252,7 @@ nav .nav-item + .nav-item {
     padding: var(--header-padding);
     position: relative;
     z-index: 3;
-    background: transparent;
+    background: transparent !important;
 }
 
 .header-container {
@@ -356,7 +356,7 @@ nav .nav-item + .nav-item {
 
 /* Section Latest news ============================= */
 
-.row {
+.section-latest-news .row {
     flex-direction: row-reverse;
 }
 
