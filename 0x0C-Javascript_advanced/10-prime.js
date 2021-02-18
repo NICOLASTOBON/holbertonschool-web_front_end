@@ -19,11 +19,9 @@ let countPrimeNumbers = _ => {
 
 let now = performance.now()
 
-setTimeout( _ => {
-    for (let time = 0; time < 100; time++) {
-        countPrimeNumbers()
-    }
-}, 0)
+for (let time = 0; time < 100; time++) {
+    countPrimeNumbers()
+}
 
 let finish = performance.now()
 
