@@ -18,9 +18,13 @@ let countPrimeNumbers = _ => {
 }
 
 let now = performance.now()
-for (let time = 0; time < 100; time++) {
-    countPrimeNumbers()
-}
+
+setTimeout( _ => {
+    for (let time = 0; time < 100; time++) {
+        countPrimeNumbers()
+    }
+}, 0)
+
 let finish = performance.now()
 
 console.log(`Execution time of calculating prime numbers 100 times was ${finish - now} milliseconds.`)
