@@ -14,6 +14,7 @@ let countPrimeNumbers = _ => {
             nums += 1
         }
     }
+    return nums
 }
 
 let now = performance.now()
