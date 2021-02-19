@@ -1,5 +1,5 @@
-function welcomeMessage(firstName) {
-    return _ => alert(`welcome ${firstName}`) 
+function welcomeMessage(fullName) {
+    return _ => alert(`welcome ${fullName}`) 
 }
 
 let guillaume = welcomeMessage("Guillaume")
