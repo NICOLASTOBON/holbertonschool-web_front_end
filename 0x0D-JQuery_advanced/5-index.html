@@ -10,15 +10,15 @@
             integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
             crossorigin="anonymous">
         </script>
+
     </head>
 
     <body>
-
         <script type="application/javascript">
             $(document).ready(function() {
 
                 const createFamilyTree = () => {
-                    $("body").append(
+                    $('body').append(
                         $('<table>').append(
                             $('<thead>').append(
                                 $('<tr>').append(
@@ -26,25 +26,33 @@
                                     $('<th>').text('Lastname')
                                 )
                             ),
-                            $('<tbody>').append(
-                                $('<tr>').append(
-                                    $('<td>').text('Guillaume'),
-                                    $('<td>').text('Salva')
-                                ),
-                                $('<tr>').append(
-                                    $('<td>').text('Paulette'),
-                                    $('<td>').text('Salva')
-                                ),
-                                $('<tr>').append(
-                                    $('<td>').text('Antoine'),
-                                    $('<td>').text('Salva')
-                                )
-                            )
+                            $('<tbody>')
+                        )
+                    )
+                }
+
+                const addNewMember = (firstname, lastname) => {
+                    $('tbody').append(
+                        $('<tr>').append(
+                            $('<td>').text(firstname),
+                            $('<td>').text(lastname),
+                            $('<td>')
+                                .text('(x)')
+                                .css('background-color', 'orange')
+                                .click(function() {
+                                $(this).parent().remove()
+                            })
                         )
                     )
                 }
 
                 createFamilyTree()
+                addNewMember('Guillaume', 'Salva')
+                addNewMember('Arielle', 'Snizt')
+                addNewMember('Fanette', 'Snizt')
+                addNewMember('Gerard', 'Snizt')
+                addNewMember('Victor', 'Salva')
+
             })
         </script>
     </body>
