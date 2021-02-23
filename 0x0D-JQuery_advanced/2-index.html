@@ -15,34 +15,37 @@
     <body>
 
         <script type="application/javascript">
-            const createFamilyTree = () => {
-                $("body").append(
-                    '<table>\
-                        <thead>\
-                            <tr>\
-                                <th>Firstname</th>\
-                                <th>Lastname</th>\
-                            </tr>\
-                        </thead>\
-                        <tbody>\
-                            <tr>\
-                                <td>Guillaume</td>\
-                                <td>Salva</td>\
-                            </tr>\
-                            <tr>\
-                                <td>Paulette</td>\
-                                <td>Salva</td>\
-                            </tr>\
-                            <tr>\
-                                <td>Antoine</td>\
-                                <td>Salva</td>\
-                            </tr>\
-                        </tbody>\
-                    </table>'
-                    )
-            }
+            $(document).ready(function() {
+                const table = $(`
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Guillaume</td>
+                                <td>Salva</td>
+                            </tr>
+                            <tr>
+                                <td>Paulette</td>
+                                <td>Salva</td>
+                            </tr>
+                            <tr>
+                                <td>Antoine</td>
+                                <td>Salva</td>
+                            </tr>
+                        </tbody>
+                    </table>`)
 
-            createFamilyTree()
+                    const createFamilyTree = () => {
+                        $("body").append(table)
+                    }
+
+                    createFamilyTree()
+            })
         </script>
     </body>
 
