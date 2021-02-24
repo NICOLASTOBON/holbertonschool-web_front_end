@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <style>
+            .loading {
+                opacity: 0.2
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            $(document).ready(function() {
+                const createSearchForm = () => {
+                    $('body').append(
+                        $('<input>').attr('type', 'text'),
+                        $('<input>').attr('type', 'submit').click(
+                            function() {
+                                let value = $('input').first().val()
+                                queryWikipedia(value)
+                            }
+                        ),
+                        $('<ul>'),
+                        $('<ul>').attr('id', 'pagination')
+                    )
+                }
+
+                const addNewArticle = (id, title, snippet) => {
+                    $('ul').first().append(
+                        $('<li>').append(
+                            $('<p>').append(
+                                $('<span>').append(`${id} - `),
+                                $('<b>').append(title)
+                            ),
+                            $('<p>').append(snippet)
+                        )
+                    )
+                }
+
+                const queryWikipedia = (search, offset=0) => {
+
+                    const url = 'https://en.wikipedia.org/w/api.php'
+
+                    let params = {
+                        action: "query",
+                        list: "search",
+                        srsearch: search,
+                        format: "json",
+                        sroffset: offset
+                    }
+
+                    displayLoading(true)
+
+                    $.ajax(
+                        {
+                            url: `${url}?origin=*`,
+                            data: params,
+                            success: function (response) {
+                                displayLoading(false)
+                                $('ul').first().empty()
+                                response.query.search.forEach(({ title, pageid, snippet }) => {
+                                    addNewArticle(pageid, title, snippet)
+                                })
+                                let value = response.query.searchinfo.totalhits
+                                buildPagination(value, 10, offset + 1)
+                            }
+                        }
+                    )
+                }
+
+                const buildPagination = (numberOfItems, itemsPerPage, currentOffset) => {
+                    $('ul#pagination').empty()
+
+                    let numPage = numberOfItems / itemsPerPage
+
+                    for (let num = 1; num <= numPage; num++) {
+                        let item = $("<li>").css({ cursor: "pointer", marginLeft: "10px", display: "inline" }).text(num).    click(function () {
+                        queryWikipedia($("input:nth-of-type(1)").val(), parseInt(this.textContent) - 1);
+                        });
+                            if (num === currentOffset) {
+                                item.css("fontWeight", "bold")
+                            }
+                        $('#pagination').append(item)
+                    }
+                }
+
+                const displayLoading = (loading) => {
+                    let list = $('ul').first()
+
+                    if (loading) {
+                        list.wrap('<div class="loading"></div>')
+                    } else {
+                        list.unwrap()
+                    }
+                }
+
+                createSearchForm()
+            })
+        </script>
+    </body>
+
+</html>
