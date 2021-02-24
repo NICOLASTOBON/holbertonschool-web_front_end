@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            $(document).ready(function() {
+
+                const addPostRow = (data) => {
+                    $('body').append(
+                        $('<p>').append(
+                            $('<span>').text(`Post created with id ${data.postid}, title: ${data.title}, author: ${data.author}`)
+                        )
+                    )
+                }
+
+                const listPosts = () => {
+                    $.get('db.json', (data, status) => {
+                        if (status === 'success') {
+                            data.posts.forEach((items) => addPostRow(items))
+                        } else {
+                            alert('Server Error')
+                        }
+                    })
+                }
+
+                listPosts()
+            })
+        </script>
+    </body>
+
+</html>
