@@ -21,12 +21,13 @@
                                 queryWikipedia(value)
                             }
                         ),
-                        $('<ul>')
+                        $('<ul>'),
+                        $('<ul>').attr('id', 'pagination')
                     )
                 }
 
                 const addNewArticle = (id, title, snippet) => {
-                    $('ul').append(
+                    $('ul').first().append(
                         $('<li>').append(
                             $('<p>').append(
                                 $('<span>').append(`${id} - `),
@@ -37,7 +38,7 @@
                     )
                 }
 
-                const queryWikipedia = (search) => {
+                const queryWikipedia = (search, offset=0) => {
 
                     const url = 'https://en.wikipedia.org/w/api.php'
 
@@ -45,7 +46,8 @@
                         action: "query",
                         list: "search",
                         srsearch: search,
-                        format: "json"
+                        format: "json",
+                        sroffset: offset
                     }
 
                     $.ajax(
@@ -53,12 +55,31 @@
                             url: `${url}?origin=*`,
                             data: params,
                             success: function (response) {
+                                $('ul').first().empty()
                                 response.query.search.forEach(({ title, pageid, snippet }) => {
                                     addNewArticle(pageid, title, snippet)
                                 })
+                                let value = response.query.searchinfo.totalhits
+                                buildPagination(value, 10, offset + 1)
                             }
                         }
                     )
+                }
+
+                const buildPagination = (numberOfItems, itemsPerPage, currentOffset) => {
+                    $('ul#pagination').empty()
+
+                    let numPage = numberOfItems / itemsPerPage
+
+                    for (let num = 1; num <= numPage; num++) {
+                        let item = $("<li>").css({ cursor: "pointer", marginLeft: "10px", display: "inline" }).text(num).    click(function () {
+                        queryWikipedia($("input:nth-of-type(1)").val(), parseInt(this.textContent) - 1);
+                        });
+                            if (num === currentOffset) {
+                                item.css("fontWeight", "bold")
+                            }
+                        $('#pagination').append(item)
+                    }
                 }
 
                 createSearchForm()
