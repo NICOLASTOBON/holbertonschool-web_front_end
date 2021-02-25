@@ -19,17 +19,39 @@
         const email = document.getElementById('email')
 
         const setCookies = () => {
-            document.cookie = `firstname=${name.value};`
-            document.cookie = `email=${email.value};`
+            const date = new Date()
+            date.setDate(date.getDate() + 10)
+
+            let expireDate = date.toUTCString()
+
+            document.cookie = `firstname=${name.value}; expires=${expireDate}; path=/`
+            document.cookie = `email=${email.value}; expires=${expireDate}; path=/`
         }
 
         const showCookies = () => {
             let body = document.querySelector('body')
             let paragraph = document.createElement('p')
 
-            paragraph.innerHTML = `Cookies: ${document.cookie}`
+            let mail = getCookie('email')
+            let name = getCookie('firstname')
+            paragraph.innerHTML = `Email: ${mail} - Firstname: ${name}`
             body.append(paragraph)
         }
+
+        const getCookie = (name) => {
+
+            let value = document.cookie
+                .split(';')
+                .map(item => item.trim().split('='))
+                .reduce((acc, item) => {
+                    acc[item[0]] = item[1]
+                    return acc
+                }, {})
+
+            return (value[name]) ? value[name] : ""
+
+        }
+
     </script>
 </body>
 </html>
