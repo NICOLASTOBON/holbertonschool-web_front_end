@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>login to the website</h2>
+        <input type="text" id="firstname" placeholder="firstname">
+        <input type="text" id="email" placeholder="email">
+        <button onClick="setCookies()">Log me in</button>
+    </div>
+
+    <script>
+
+        const name = document.getElementById('firstname')
+        const email = document.getElementById('email')
+
+        const setCookies = () => {
+            const date = new Date()
+            date.setDate(date.getDate() + 10)
+
+            let expireDate = date.toUTCString()
+
+            document.cookie = `firstname=${name.value}; expires=${expireDate}; path=/`
+            document.cookie = `email=${email.value}; expires=${expireDate}; path=/`
+        }
+
+        const getCookie = (name) => {
+            let value = document.cookie
+                .split(';')
+                .map(item => item.trim().split('='))
+                .reduce((acc, item) => {
+                    acc[item[0]] = item[1]
+                    return acc
+                }, {})
+
+            return (value[name]) ? value[name] : ""
+
+        }
+
+        const showForm = () => {
+            let h1 = document.querySelector("h1")
+            let form = document.querySelector("div")
+            
+            if (h1) {
+                h1.style.display = 'none'
+                form.style.display = 'block'
+            }
+        }
+
+        const hideForm = () => {
+            let form = document.querySelector('div')
+
+            form.style.display = "none"
+        }
+
+        const deleteCookiesAndShowForm = () => {
+            document.cookie = 'firstname= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+            document.cookie = 'email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+
+            showForm()
+        }
+
+        const showWelcomeMessageOrForm = () => {
+            if (document.cookie) {
+
+                hideForm()
+
+                let body = document.querySelector('body')
+                let h1 = document.createElement("h1")
+                let link = document.createElement('a')
+
+                let name = getCookie('firstname')
+
+                link.href = '#'
+                link.append('(logout)')
+                link.style.cssText = `
+                    font-weight: normal;
+                    font-style: italic;
+                    margin-right: 10px;
+                    text-decoration: none;
+                    `
+
+                link.addEventListener('click',deleteCookiesAndShowForm)
+
+                h1.append(`Welcome ${name} `, link)
+                body.append(h1)
+
+            } else {
+                showForm()
+            }
+        }
+
+        showWelcomeMessageOrForm()
+
+    </script>
+</body>
+</html>
