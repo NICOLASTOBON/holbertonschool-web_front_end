@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 </head>
 <body>
     <div>
@@ -20,28 +21,10 @@
         const email = document.getElementById('email')
 
         const setCookies = () => {
-            const date = new Date()
-            date.setDate(date.getDate() + 10)
-
-            let expireDate = date.toUTCString()
-
-            document.cookie = `firstname=${name.value}; expires=${expireDate}; path=/`
-            document.cookie = `email=${email.value}; expires=${expireDate}; path=/`
+            Cookies.set('firstname', name.value)
+            Cookies.set('email', email.value)
 
             showWelcomeMessageOrForm()
-        }
-
-        const getCookie = (name) => {
-            let value = document.cookie
-                .split(';')
-                .map(item => item.trim().split('='))
-                .reduce((acc, item) => {
-                    acc[item[0]] = item[1]
-                    return acc
-                }, {})
-
-            return (value[name]) ? value[name] : ""
-
         }
 
         const showForm = () => {
@@ -64,9 +47,8 @@
         }
 
         const deleteCookiesAndShowForm = () => {
-            document.cookie = 'firstname= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
-            document.cookie = 'email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
-
+            Cookies.remove('firstname')
+            Cookies.remove('email')
             showForm()
         }
 
@@ -79,7 +61,7 @@
                 let h1 = document.createElement("h1")
                 let link = document.createElement('a')
 
-                let name = getCookie('firstname')
+                let name = Cookies.get('firstname')
 
                 link.href = '#'
                 link.append('(logout)')
